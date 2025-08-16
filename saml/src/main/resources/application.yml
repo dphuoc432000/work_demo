@@ -1,0 +1,18 @@
+server: 
+  port: 8089
+
+spring:
+  security:
+    saml2:
+      relyingparty:
+        registration:
+          saml-app:
+            entity-id: http://localhost:8089/saml/saml-app/sso
+            signing:
+              credentials:
+              - certificate-location: classpath:metadata/sp.crt
+                private-key-location: classpath:metadata/sp-private.key
+            singlelogout:
+              url: http://localhost:8080/realms/saml-realm/protocol/saml
+            assertingparty:
+              metadata-uri: http://localhost:8080/realms/saml-realm/protocol/saml/descriptor
